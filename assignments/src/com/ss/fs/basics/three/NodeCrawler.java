@@ -25,12 +25,17 @@ public class NodeCrawler {
     }
 
     void crawl(String path) {
-        File[] directory = new File(path).listFiles();
-        for(File file : directory) {
-            setNodesFound(file.toString());
-            if(!file.isFile()) {
-                crawl(file.toString());
+        try {
+            File[] directory = new File(path).listFiles();
+            for(File file : directory) {
+                setNodesFound(file.toString());
+                if(!file.isFile()) {
+                    crawl(file.toString());
+                }
             }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
         }
+
     }
 }
