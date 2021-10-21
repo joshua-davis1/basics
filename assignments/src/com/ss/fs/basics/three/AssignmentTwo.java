@@ -12,15 +12,20 @@ import java.util.Scanner;
 
 public class AssignmentTwo {
     public static void main(String[] args) {
+        AssignmentTwo utility = new AssignmentTwo();
         Scanner scanner = new Scanner(System.in);
-        String fileName = null;
+        String path = null;
 
         System.out.println("Enter file to be appended.");
-        fileName = scanner.next();
+        path = scanner.next();
 
+        utility.appendToFile(path);
+    }
+
+    void appendToFile(String path) {
         // file will be made in root dir if path does not exist!
         try(
-                FileWriter fw = new FileWriter(fileName, true);
+                FileWriter fw = new FileWriter(path, true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw);
         ) {
