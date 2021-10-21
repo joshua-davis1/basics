@@ -22,6 +22,8 @@ public class AssignmentThree {
 
         System.out.println("count: "+count);
     }
+
+    // returns number of times char is found in file
     int scanFile(int count,File file,char queryChar) {
         try(Scanner sFile = new Scanner(file)) {
             while(sFile.hasNextLine()) {
