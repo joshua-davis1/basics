@@ -2,10 +2,10 @@ package com.ss.fs.basics.four;
 
 public class Singleton {
     volatile public static Singleton instance = null;
-    private String someText = null;
+    private final StringBuffer someText = new StringBuffer("");
 
     private Singleton() {
-        this.someText = "Only one instance of this class can be created!";
+        setSomeText("Singleton initiated!");
     }
 
     public static Singleton getInstance() {
@@ -19,11 +19,14 @@ public class Singleton {
         return instance;
     }
 
-    public String getSomeText() {
+    public StringBuffer getSomeText() {
         return this.someText;
     }
 
     public void setSomeText(String text) {
-        this.someText = text;
+        if(this.someText.length() > 1) {
+            this.someText.delete(0, this.someText.length());
+        }
+        this.someText.append(text);
     }
 }
