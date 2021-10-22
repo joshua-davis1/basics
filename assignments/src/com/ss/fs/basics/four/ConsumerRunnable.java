@@ -1,7 +1,7 @@
 package com.ss.fs.basics.four;
 
 public class ConsumerRunnable implements Runnable{
-    final private Threader threader = Threader.getInstance();
+    private final Threader threader = Threader.getInstance();
 
     @Override
     public void run() {

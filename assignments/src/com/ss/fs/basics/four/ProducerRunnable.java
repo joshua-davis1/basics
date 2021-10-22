@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class ProducerRunnable implements Runnable {
 
-    private Threader threader = Threader.getInstance();
+    private final Threader threader = Threader.getInstance();
     private final Random random = new Random();
 
 

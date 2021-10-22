@@ -3,9 +3,9 @@ package com.ss.fs.basics.four;
 import java.util.Objects;
 
 public class Person {
-    private String name;
-    private int age;
-    private int ssn;
+    private final String name;
+    private final int age;
+    private final int ssn;
 
     public Person(String name, int age, int ssn) {
         this.name = name;
