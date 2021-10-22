@@ -1,51 +1,44 @@
 package com.ss.fs.basics.four;
 
-import java.util.Arrays;
 import java.util.Random;
 
-public class ProducerRunnable implements Runnable{
-    private final Random random = new Random();
-    private final Threader threader;
+public class ProducerRunnable implements Runnable {
 
-    public ProducerRunnable(Threader threader) {
-        this.threader = threader;
-    }
+    private Threader threader = Threader.getInstance();
+    private final Random random = new Random();
+
 
     @Override
     public void run() {
-        while(true){
-            int[] packets = new int[10];
-            // insert random values into packets arr
-            for(int i=0;i<packets.length;i++) {
-                packets[i] = getRandomNum();
-            }
-
-            for (int packet : packets) {
-                System.out.println(Thread.currentThread().getName()+": sent packet +"+packet+"+");
-                synchronized (threader) {
-                    threader.send(packet);
-                }
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        do {
+            Integer[] dataStream = threader.getDataStream();
+            for (int i = 0; i < dataStream.length; i++) {
+                if (dataStream[i] == null) {
+                    synchronized (threader) {
+                        dataStream = threader.getDataStream();
+                        if(dataStream[i] == null) {
+                            int randNumb = getRandomNum();
+                            System.out.println(Thread.currentThread().getName() + ": produced packet +" + randNumb + "+");
+                            threader.setPacket(randNumb, i);
+                        }
+                    }
                 }
             }
             sleep();
         }
+        while(true);
+    }
 
+    int getRandomNum() {
+        int num = random.nextInt(1000) + 1;
+        return num;
     }
 
     void sleep() {
         try {
-            Thread.sleep(3000);
+            Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    };
-
-    int getRandomNum() {
-        int num = random.nextInt(10000) + 1;
-        return num;
     }
 }
