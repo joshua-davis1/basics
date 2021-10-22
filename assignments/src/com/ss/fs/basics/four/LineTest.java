@@ -14,13 +14,13 @@ public class LineTest {
     }
 
     @Test
-    public void getArithmeticDistance() {
+    public void getArithmeticDistanceTest() {
         Double expected = 10.4479;
         assertEquals(expected,line.getDistance(),.0001);
     }
 
     @Test
-    public void parallelTo() {
+    public void parallelToTest() {
         Boolean expected = false;
         assertEquals(expected,line.parallelTo(new Line(2,4.2,8,9.20)));
     }
