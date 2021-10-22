@@ -15,9 +15,10 @@ public class RunnableClass implements Runnable {
     @Override
     public void run() {
         people.forEach((person) -> {
+            System.out.println(Thread.currentThread().getName()+": attempting to access resource +"+person.getName()+"+");
             try {
                 synchronized (person) {
-                    System.out.println(Thread.currentThread().getName()+" executing +"+person.getName()+"+");
+                    System.out.println(Thread.currentThread().getName()+": has access "+person);
                     Thread.sleep(SLEEP);
                 }
             } catch(InterruptedException e) {
