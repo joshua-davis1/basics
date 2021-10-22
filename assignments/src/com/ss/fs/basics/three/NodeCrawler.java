@@ -12,10 +12,6 @@ public class NodeCrawler {
         this.nodes.add(node);
     }
 
-    public ArrayList<String> getNodes() {
-        return this.nodes;
-    }
-
     void setPath(String path) {
         crawl(path);
     }
