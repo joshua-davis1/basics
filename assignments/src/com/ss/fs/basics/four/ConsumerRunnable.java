@@ -17,17 +17,18 @@ public class ConsumerRunnable implements Runnable{
                             threader.setPacket(null, i);
                         }
                     }
+                    i++;
                     break;
                 }
+                i++;
             }
-
-            sleep();
+        sleep();
         }
     }
 
     void sleep() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

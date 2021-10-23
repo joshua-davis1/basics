@@ -10,7 +10,7 @@ public class ProducerRunnable implements Runnable {
 
     @Override
     public void run() {
-        while(true) {
+        for (int j=0; j<1;j++) {
             Integer[] dataStream = threader.getDataStream();
 
             int i = 0;
@@ -38,7 +38,7 @@ public class ProducerRunnable implements Runnable {
 
     void sleep() {
         try {
-            Thread.sleep(4000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
