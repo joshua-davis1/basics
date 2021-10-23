@@ -1,5 +1,6 @@
 package com.ss.fs.basics.four;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class ProducerRunnable implements Runnable {
@@ -10,10 +11,12 @@ public class ProducerRunnable implements Runnable {
 
     @Override
     public void run() {
-        do {
+        while(true) {
             Integer[] dataStream = threader.getDataStream();
-            for (int i = 0; i < dataStream.length; i++) {
-                if (dataStream[i] == null) {
+
+            int i = 0;
+            for (Integer packet: dataStream) {
+                if (packet == null) {
                     synchronized (threader) {
                         dataStream = threader.getDataStream();
                         if(dataStream[i] == null) {
@@ -23,10 +26,10 @@ public class ProducerRunnable implements Runnable {
                         }
                     }
                 }
+                i++;
             }
             sleep();
         }
-        while(true);
     }
 
     int getRandomNum() {
