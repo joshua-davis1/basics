@@ -7,8 +7,9 @@ public class ConsumerRunnable implements Runnable{
     public void run() {
         while(true) {
             Integer[] dataStream = threader.getDataStream();
-            for (int i = 0; i < dataStream.length; i++) {
-                if (dataStream[i] != null) {
+            int i =0;
+            for (Integer packet: dataStream) {
+                if (packet != null) {
                     synchronized (threader) {
                         dataStream = threader.getDataStream();
                         if (dataStream[i] != null) {
@@ -19,6 +20,7 @@ public class ConsumerRunnable implements Runnable{
                     break;
                 }
             }
+
             sleep();
         }
     }
