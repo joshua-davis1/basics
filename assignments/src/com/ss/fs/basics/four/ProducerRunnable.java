@@ -1,6 +1,5 @@
 package com.ss.fs.basics.four;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class ProducerRunnable implements Runnable {
