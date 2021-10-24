@@ -27,7 +27,7 @@ public class AssignmentThree {
     int scanFile(int count,File file,char queryChar) {
         try (Scanner sFile = new Scanner(file)) {
             while (sFile.hasNextLine()) {
-                String data = sFile.nextLine();
+                String data = sFile.nextLine();  // would StringBuilder have a consistent hashcode ?
                 for (int i = 0; i < data.length(); i++) {
                     if (data.charAt(i) == queryChar) {
                         count++;
