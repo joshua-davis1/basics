@@ -14,12 +14,12 @@ public class AssignmentTwo {
     public static void main(String[] args) {
         AssignmentTwo utility = new AssignmentTwo();
         Scanner scanner = new Scanner(System.in);
-        String path = null;
+        StringBuilder path = new StringBuilder();
 
         System.out.println("Enter file to be appended.");
-        path = scanner.next();
+        path.append(scanner.next());
 
-        utility.appendToFile(path);
+        utility.appendToFile(path.toString());
     }
 
     void appendToFile(String path) {
