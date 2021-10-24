@@ -25,19 +25,18 @@ public class AssignmentThree {
 
     // returns number of times char is found in file
     int scanFile(int count,File file,char queryChar) {
-        try(Scanner sFile = new Scanner(file)) {
-            while(sFile.hasNextLine()) {
+        try (Scanner sFile = new Scanner(file)) {
+            while (sFile.hasNextLine()) {
                 String data = sFile.nextLine();
-                for(int i=0;i<data.length();i++){
-                    if(data.charAt(i) == queryChar) {
+                for (int i = 0; i < data.length(); i++) {
+                    if (data.charAt(i) == queryChar) {
                         count++;
                     }
                 }
             }
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            return count;
         }
+        return count;
     }
 }
