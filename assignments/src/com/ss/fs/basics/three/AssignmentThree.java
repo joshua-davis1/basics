@@ -26,10 +26,12 @@ public class AssignmentThree {
     // returns number of times char is found in file
     int scanFile(int count,File file,char queryChar) {
         try (Scanner sFile = new Scanner(file)) {
+            StringBuilder buffer = new StringBuilder();
             while (sFile.hasNextLine()) {
-                String data = sFile.nextLine();  // would StringBuilder have a consistent hashcode ?
-                for (int i = 0; i < data.length(); i++) {
-                    if (data.charAt(i) == queryChar) {
+                buffer.delete(0,buffer.length());   // clear buffer
+                buffer.append(sFile.nextLine());
+                for (int i = 0; i < buffer.length(); i++) {
+                    if (buffer.charAt(i) == queryChar) {
                         count++;
                     }
                 }
