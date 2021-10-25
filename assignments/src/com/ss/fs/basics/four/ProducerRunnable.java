@@ -1,5 +1,7 @@
 package com.ss.fs.basics.four;
 
+import java.time.LocalTime;
+import java.util.PriorityQueue;
 import java.util.Random;
 
 public class ProducerRunnable implements Runnable {
@@ -10,22 +12,20 @@ public class ProducerRunnable implements Runnable {
 
     @Override
     public void run() {
-        for (int j=0; j<1;j++) {
-            Integer[] dataStream = threader.getDataStream();
-
-            int i = 0;
-            for (Integer packet: dataStream) {
-                if (packet == null) {
-                    synchronized (threader) {
-                        dataStream = threader.getDataStream();
-                        if(dataStream[i] == null) {
+        // check and reproduce packets if queue is empty
+        while(true) {
+            if (threader.getQueue().peek() == null) {
+                synchronized (threader) {
+                    PriorityQueue<Integer> queue = threader.getQueue();
+                    if (queue.peek() == null) {
+                        System.out.println('\n'+Thread.currentThread().getName() + " que is empty " + queue + " @ "+ LocalTime.now());
+                        for(int i=0;i<5;i++) {
                             int randNumb = getRandomNum();
-                            System.out.println(Thread.currentThread().getName() + ": produced packet +" + randNumb + "+");
-                            threader.setPacket(randNumb, i);
+                            queue.add(randNumb);
                         }
+                        System.out.println(Thread.currentThread().getName() + " (+) que has be replenished " + threader.getQueue() + " @ "+ LocalTime.now()+'\n');
                     }
                 }
-                i++;
             }
             sleep();
         }
@@ -38,7 +38,7 @@ public class ProducerRunnable implements Runnable {
 
     void sleep() {
         try {
-            Thread.sleep(10000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

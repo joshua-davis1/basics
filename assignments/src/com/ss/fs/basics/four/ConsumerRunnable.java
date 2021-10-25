@@ -1,26 +1,22 @@
 package com.ss.fs.basics.four;
 
+import java.time.LocalTime;
+import java.util.PriorityQueue;
+
 public class ConsumerRunnable implements Runnable{
     private final Threader threader = Threader.getInstance();
 
     @Override
     public void run() {
         while(true) {
-            Integer[] dataStream = threader.getDataStream();
-            int i =0;
-            for (Integer packet: dataStream) {
-                if (packet != null) {
-                    synchronized (threader) {
-                        dataStream = threader.getDataStream();
-                        if (dataStream[i] != null) {
-                            System.out.println(Thread.currentThread().getName() + ": consumed packet +" + dataStream[i] + "+"+" index: "+i);
-                            threader.setPacket(null, i);
-                        }
+            if(threader.getQueue().peek() != null) {
+                synchronized (threader) {
+                    PriorityQueue<Integer> queue = threader.getQueue();
+                    if (queue.peek() != null) {
+                        int polled = queue.poll();
+                        System.out.println(Thread.currentThread().getName() + " (-) consumed packet " + polled + " @ " + LocalTime.now());
                     }
-                    i++;
-                    break;
                 }
-                i++;
             }
         sleep();
         }
