@@ -18,12 +18,12 @@ public class ProducerRunnable implements Runnable {
                 synchronized (threader) {
                     PriorityQueue<Integer> queue = threader.getQueue();
                     if (queue.peek() == null) {
-                        System.out.println('\n'+Thread.currentThread().getName() + " que is empty " + queue + " @ "+ LocalTime.now());
+                        System.out.println('\n'+Thread.currentThread().getName() + " queue empty " + queue + " @ "+ LocalTime.now());
                         for(int i=0;i<5;i++) {
                             int randNumb = getRandomNum();
                             queue.add(randNumb);
                         }
-                        System.out.println(Thread.currentThread().getName() + " (+) que has be replenished " + threader.getQueue() + " @ "+ LocalTime.now()+'\n');
+                        System.out.println(Thread.currentThread().getName() + " (+) queue replenished " + threader.getQueue() + " @ "+ LocalTime.now()+'\n');
                     }
                 }
             }
