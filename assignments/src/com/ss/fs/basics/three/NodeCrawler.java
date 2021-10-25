@@ -12,7 +12,7 @@ public class NodeCrawler {
         this.nodes.add(node);
     }
 
-    void setPath(String path) {
+    void setPath(StringBuilder path) {
         crawl(path);
     }
 
@@ -20,13 +20,15 @@ public class NodeCrawler {
         System.out.println(nodes);
     }
 
-    void crawl(String path) {
+    void crawl(StringBuilder path) {
         try {
-            File[] directory = new File(path).listFiles();
+            File[] directory = new File(path.toString()).listFiles();
             for(File file : directory) {
                 setNodesFound(file.toString());
                 if(!file.isFile()) {
-                    crawl(file.toString());
+                    path.delete(0,path.length());
+                    path.append(file.toString());
+                    crawl(path);
                 }
             }
         } catch (NullPointerException e) {

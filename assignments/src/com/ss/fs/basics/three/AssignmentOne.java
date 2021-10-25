@@ -9,11 +9,11 @@ import java.util.Scanner;
 public class AssignmentOne {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String path;
+        StringBuilder path = new StringBuilder();
         NodeCrawler nodeCrawler = new NodeCrawler();
 
         System.out.println("Enter directory path: ");
-        path = scanner.next();
+        path.append(scanner.next());
 
         nodeCrawler.setPath(path);
         nodeCrawler.printNodes();
