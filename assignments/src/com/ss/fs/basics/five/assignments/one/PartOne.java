@@ -22,12 +22,8 @@ public class PartOne {
     // 1d
     List<String> sortContainsE(List<String> arr) {
         return arr.stream().sorted((s1,s2) -> {
-            if(s1.charAt(0) == 'e' && s2.charAt(0) == 'e'){
-                return 0;
-            }
-            if(s1.contains("e")) {
-                return -1;
-            }
+            if(s1.charAt(0) == 'e' && s2.charAt(0) == 'e') return 0;
+            if(s1.contains("e")) return -1;
             return 1;
             }).collect(Collectors.toList());
     }
@@ -41,23 +37,16 @@ public class PartOne {
 
     // 1e static helper method
     int strContainsE(String s1, String s2) {
-        if(s1.charAt(0) == 'e' && s2.charAt(0) == 'e'){
-            return 0;
-        }
-        if(s1.charAt(0) == 'e') {
-            return -1;
-        }
+        if(s1.charAt(0) == 'e' && s2.charAt(0) == 'e') return 0;
+        if(s1.charAt(0) == 'e') return -1;
         return 1;
     }
 
     // 2
     String prependNumb(List<Integer> arr) {
         return arr.stream().map((numb) -> {
-            if (numb%2 == 0) {
-                return "e"+numb;
-            } else {
-                return "o"+numb;
-            }
+            if (numb%2 == 0) return "e"+numb;
+            else return "o"+numb;
         }).collect(Collectors.joining(","));
     }
 

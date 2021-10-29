@@ -1,7 +1,7 @@
 package com.ss.fs.basics.four;
 
 public class Singleton {
-    volatile public static Singleton instance = null;
+    volatile private static Singleton instance = null;
     private final StringBuffer someText = new StringBuffer("");
 
     private Singleton() {

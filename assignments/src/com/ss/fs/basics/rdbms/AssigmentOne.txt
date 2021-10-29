@@ -1,0 +1,7 @@
+1)
+select tbl_book.title, tbl_library_branch.branchName, tbl_book_copies.noOfCopies from tbl_book
+left join tbl_book_copies on tbl_book_copies.bookId=tbl_book.bookId
+left join tbl_library_branch on tbl_book_copies.bookId=tbl_library_branch.branchId
+where title = "The Lost Tribe" and branchName = "Sharpstown";
+
+2)

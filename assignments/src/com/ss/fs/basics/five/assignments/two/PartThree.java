@@ -9,9 +9,7 @@ public class PartThree {
 
     List<Integer> doubling(List<Integer> numbArr) {
         return numbArr.stream().map(numb -> {
-            if(numb != null) {
-                return numb * 2;
-            }
+            if(numb != null) return numb * 2;
             return 0;
         }).collect(Collectors.toList());
     }

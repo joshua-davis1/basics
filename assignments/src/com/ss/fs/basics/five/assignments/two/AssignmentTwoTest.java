@@ -12,6 +12,7 @@ public class AssignmentTwoTest {
     PartTwo partTwo = new PartTwo();
     PartThree partThree = new PartThree();
     PartFour partFour = new PartFour();
+    PartFive partFive = new PartFive();
 
     List<Integer> numbArr = new ArrayList<>() {{add(545);add(71);add(94);add(191);}};
 
@@ -37,4 +38,23 @@ public class AssignmentTwoTest {
 
         assertEquals(expected, partFour.noX(stringArr));
     }
+
+    @Test
+    public void groupSumClumpFalseTest() {
+        int[] testCase = {2,4,4,8};
+
+        Boolean expected = false;
+
+        assertEquals(expected, partFive.groupSumClump(0,testCase, 14));
+    }
+
+    @Test
+    public void groupSumClumpTrueTest() {
+        int[] testCase = {2,4,4,8};
+
+        Boolean expected = true;
+
+        assertEquals(expected, partFive.groupSumClump(0,testCase, 10));
+    }
+
 }

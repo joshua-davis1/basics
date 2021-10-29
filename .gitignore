@@ -1,5 +1,6 @@
 .idea
 out
+SQL_Resources/
 lecture_notes.txt
 ThreadExp.java
 /assignments/src/com/ss/fs/basics/prat/

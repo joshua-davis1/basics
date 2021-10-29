@@ -56,9 +56,7 @@ public class PartTwo {
 
         for (int i=0; i<range.lengthOfMonth(); i++) {
             LocalDate day = range.plusDays(i);
-            if (day.getDayOfWeek().getValue() == 1) {
-                results.add(day);
-            }
+            if (day.getDayOfWeek().getValue() == 1) results.add(day);
         }
         return results;
     }
@@ -66,12 +64,8 @@ public class PartTwo {
     // 7.
     // Write an example that tests whether a given date occurs on Friday the 13th.
     Boolean isAScaryDay(LocalDate day) {
-        if(day.getDayOfWeek().getValue() != 5) {
-            return Boolean.FALSE;
-        }
-        if(day.getDayOfMonth() != 13) {
-            return Boolean.FALSE;
-        }
+        if(day.getDayOfWeek().getValue() != 5) return Boolean.FALSE;
+        if(day.getDayOfMonth() != 13) return Boolean.FALSE;
         return Boolean.TRUE;
     }
 }
