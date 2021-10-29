@@ -20,18 +20,20 @@ public class CustomMath {
         };
     }
 
+    // TODO: a more efficient solution would be to test one half against the other half
     public PerformOperation isPalindrome(Integer numb) {
         return () -> {
             if (numb ==  0) {
                 return "PALINDROME";
             }
 
+            // negative numbers and any number that ends with 0 is not a palindrome
             if (numb < 0 || numb % 10 == 0) {
                 return "NOT PALINDROME";
             }
             StringBuilder numbString = new StringBuilder();
             numbString.append(numb);
-            if (numbString.toString().equals(numbString.reverse().toString())) {
+            if (numb.toString().equals(numbString.reverse().toString())) {
                 return "PALINDROME";
             }
             return "NOT PALINDROME";
