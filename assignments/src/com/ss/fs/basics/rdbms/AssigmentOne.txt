@@ -1,7 +1,59 @@
 1)
-select tbl_book.title, tbl_library_branch.branchName, tbl_book_copies.noOfCopies from tbl_book
-left join tbl_book_copies on tbl_book_copies.bookId=tbl_book.bookId
-left join tbl_library_branch on tbl_book_copies.bookId=tbl_library_branch.branchId
-where title = "The Lost Tribe" and branchName = "Sharpstown";
+SELECT branch.branchName AS 'Location Name', book.title AS 'Title', copies.noOfCopies AS 'Total Copies'
+FROM tbl_book_copies AS copies
+LEFT JOIN tbl_library_branch AS branch ON branch.branchId = copies.branchId
+LEFT JOIN tbl_book AS book ON book.bookId = copies.bookId
+WHERE book.title = "The Lost Tribe" AND branch.branchName = "Sharpstown";
 
 2)
+select l.branchName,  r.noOfCopies
+
+from (tbl_library_branch as l
+join tbl_book_copies as r
+on l.branchId = r.branchId)
+right join  tbl_book as bk
+on r.bookId = bk.bookId
+where title in ('The Lost Tribe');
+
+3)
+select l.name
+from tbl_borrower as l
+left join tbl_book_loans as r
+on l.cardNo = r.cardNo
+where r.bookId is null
+
+4)
+select bk.title, br.name, br.address
+from tbl_book_loans as l
+join tbl_library_branch as r
+on l.branchId = r.branchId
+join tbl_book as bk
+on l.bookId = bk.bookId
+join tbl_borrower as br
+on l.cardNo = br.cardNo
+where r.branchName = "Sharpstown" and l.dueDate = curdate();
+
+5)
+select l.branchName as 'Branch Name', count(r.bookId) as 'Books Out'
+from tbl_library_branch as l
+join tbl_book_loans as r
+on l.branchId = r.branchId
+
+group by l.branchId;
+
+6)
+select r.name, count(*) as 'Borrowing'
+from tbl_book_loans as l
+join tbl_borrower as r
+on l.cardNo = r.cardNo
+group by l.cardNo
+having count(*) > 5;
+
+7)
+select bk.title, r.noOfCopies
+from (tbl_library_branch as l join tbl_book_copies as r on l.branchId = r.branchId)
+join tbl_book as bk
+on r.bookId = bk.bookId
+left join  tbl_author as au
+on bk.authId = au.authorId
+where l.branchName = 'Central' and au.authorName = 'Stephen King';
